@@ -3,6 +3,11 @@
     background-color: brown;
     }
 
-    .item{
+    .item a{
         color:white;
+        text-decoration: none;
+    }
+
+    .item a.navActiv{
+        color: gold;
     }
