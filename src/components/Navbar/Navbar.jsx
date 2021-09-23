@@ -1,24 +1,33 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import classes from './Navbar.module.css';
+import classes from "./Navbar.module.css";
 
-export const Navbar = () => {
+export const Navbar = (props) => {
+  console.log(props);
+  let newSideBar = props.state.sidebarPages.map((el) => {
+    return (
+      <div className={classes.item}>
+        <NavLink to={el.to} key={el.id} activeClassName={classes.navActiv}>
+          {el.name}
+        </NavLink>
+      </div>
+    );
+  });
+
+  let newFriends = props.state.Friends.map((el) => {
+    return (
+      <div key={el.id} className={classes.friend}>
+        <img src="https://www.canon-emirates.ae/media/quality-photo-240_tcm209-1178372.png" />
+        {el.name}
+      </div>
+    );
+  });
   return (
     <nav className={classes.nav}>
-      <div className={classes.item}>
-        <NavLink to='/profile' activeClassName={classes.navActiv}>Profile</NavLink>
-      </div>
-      <div className={classes.item}>
-        <NavLink to='/dialogs' activeClassName={classes.navActiv}>Messages</NavLink>
-      </div>
-      <div className={classes.item}>
-        <NavLink to='news' activeClassName={classes.navActiv}>News</NavLink>
-      </div>
-      <div className={classes.item}>
-        <NavLink to='/music' activeClassName={classes.navActiv}>Music</NavLink>
-      </div>
-      <div className={classes.item}>
-        <NavLink to='/settings' activeClassName={classes.navActiv}>Settings</NavLink>
+      {newSideBar}
+      <div>
+        <h3>Friends</h3>
+        <div>{newFriends}</div>
       </div>
     </nav>
   );

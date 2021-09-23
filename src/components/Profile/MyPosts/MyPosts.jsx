@@ -2,18 +2,28 @@ import React from "react";
 import classes from "./MyPosts.module.css";
 import { Post } from "./Post/Post";
 
-export const MyPosts = () => {
+export const MyPosts = (props) => {
+  let newPostElement = React.createRef();
+  let addPost = () => {
+    let text = newPostElement.current.value;
+    props.addPost(text);
+  };
+
+  let newPosts = props.posts.map((post) => (
+    <Post message={post.message} likescount={post.likescount} key={post.id} />
+  ));
   return (
-    <div>
-      My Posts
+    <div className={classes.postsBlock}>
+      <h3>My Posts</h3>
       <div>
-        <textarea></textarea>
-        <button>Add Post</button>
+        <div>
+          <textarea ref={newPostElement}></textarea>
+        </div>
+        <div>
+          <button onClick={addPost}>Add Post</button>
+        </div>
       </div>
-      <div className={classes.posts}>
-        <Post message='hi,how are you?' likescount='0'/>
-        <Post message='my first message' likescount='23'/>
-      </div>
+      <div className={classes.posts}>{newPosts}</div>
     </div>
   );
 };
