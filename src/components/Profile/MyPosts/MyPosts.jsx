@@ -1,13 +1,17 @@
 import React from "react";
-import { updateNewPostText } from "../../../Redux/state";
 import classes from "./MyPosts.module.css";
 import { Post } from "./Post/Post";
+import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../Redux/Reducer/profileReducer";
+
 
 export const MyPosts = (props) => {
+  console.log(props)
   let newPostElement = React.createRef();
+
+ 
   let addPost = () => {
-    let text = newPostElement.current.value;
-    props.addPost(text);
+    
+    props.store.dispatch(addPostActionCreator());
   };
 
   let newPosts = props.posts.map((post) => (
@@ -16,7 +20,7 @@ export const MyPosts = (props) => {
 
   let onPostChange=()=>{
     let text = newPostElement.current.value;
-    props.updateNewPostText(text)
+    props.store.dispatch(updateNewPostTextActionCreator(text))
   }
   return (
     <div className={classes.postsBlock}>

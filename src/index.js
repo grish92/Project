@@ -3,15 +3,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import store from "./Redux/state";
+import store from "./Redux/redux-store";
 
-export let renderEntireTree = () => {
+export let renderEntireTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
       <App
-        state={store.getState()}
-        addPost={store.addPost.bind(store)}
-        updateNewPostText={store.updateNewPostText.bind(store)}
+        state={state}
+        dispatch={store.dispatch.bind(store)}
+        store={store}
       />
     </React.StrictMode>,
     document.getElementById("root")
@@ -20,4 +20,7 @@ export let renderEntireTree = () => {
 
 renderEntireTree(store.getState());
 
-store.subscribe(renderEntireTree);
+store.subscribe(()=>{
+  let state=store.getState()
+  renderEntireTree(state)
+});

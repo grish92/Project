@@ -4,7 +4,7 @@ import classes from "./Navbar.module.css";
 
 export const Navbar = (props) => {
   console.log(props);
-  let newSideBar = props.state.sidebarPages.map((el) => {
+  let newSideBar = props.state.sideBar.sidebarPages.map((el) => {
     return (
       <div className={classes.item}>
         <NavLink to={el.to} key={el.id} activeClassName={classes.navActiv}>
@@ -14,7 +14,7 @@ export const Navbar = (props) => {
     );
   });
 
-  let newFriends = props.state.Friends.map((el) => {
+  let newFriends = props.state.sideBar.Friends.map((el) => {
     return (
       <div key={el.id} className={classes.friend}>
         <img src="https://www.canon-emirates.ae/media/quality-photo-240_tcm209-1178372.png" />
