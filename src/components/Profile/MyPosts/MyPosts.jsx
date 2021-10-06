@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./MyPosts.module.css";
 import { Post } from "./Post/Post";
-import { profileReducer } from "../../../Redux/Reducer/profileReducer";
+
 
 export const MyPosts = (props) => {
   console.log(props);
