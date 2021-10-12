@@ -1,44 +1,33 @@
 import React from "react";
 import classes from "./Users.module.css";
+
+import photo from "../../photo/img.jpg";
+
 export const Users = (props) => {
   console.log(props);
 
-  let newUsers = props.users.map((e) => {
-    return (
-      <div>
+  return (
+    <div>
+      {props.users.map((e) => (
         <div key={e.id} className={classes.user}>
           <span>
-            <img src={e.photo} />
+            <img src={photo} alt="" />
             {!e.followed ? (
-              <button
-                onClick={() => 
-                  props.follow(e.id)
-                }
-              >
-                Follow
-              </button>
+              <button onClick={() => props.follow(e.id)}>Follow</button>
             ) : (
-              <button
-                onClick={() => 
-                  props.unFollow(e.id)
-                }
-              >
-                Unfollow
-              </button>
+              <button onClick={() => props.unFollow(e.id)}>Unfollow</button>
             )}
           </span>
           <span>
-            <div> {`${e.name}  ${e.surname}`}</div>
-            <div> {e.status}</div>
+            <div> {`${e.name}  ${e.username}`}</div>
+            <div> {e.email}</div>
           </span>
           <span>
-            <div>{e.country}</div>
-            <div>{e.city}</div>
+            <div>{e.address.city}</div>
+            <div>{e.address.street}</div>
           </span>
         </div>
-      </div>
-    );
-  });
-
-  return <div>{newUsers}</div>;
+      ))}
+    </div>
+  );
 };

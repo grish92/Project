@@ -8,9 +8,9 @@ let initialState= {
       { id: "6", name: "New Users", to: "users" },
     ],
     friends: [
-      { id: 1, name: "User1" },
-      { id: 2, name: "User2" },
-      { id: 3, name: "User3" },
+      { id: '01', name: "User1" },
+      { id: '02', name: "User2" },
+      { id: '03', name: "User3" },
     ],
   }
 

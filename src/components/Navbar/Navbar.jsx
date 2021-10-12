@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import classes from "./Navbar.module.css";
 
 const Navbar = (props) => {
-  console.log(props);
+  // console.log(props);
   let newSideBar = props.sideBarPages.map((el) => {
     return (
       <div className={classes.item}>
@@ -14,11 +14,11 @@ const Navbar = (props) => {
     );
   });
 
-  let newFriends = props.friends.map((el) => {
+  let newFriends = props.friends.map((elem) => {
     return (
-      <div key={el.id} className={classes.friend}>
+      <div key={elem.id} className={classes.friend}>
         <img src="https://www.canon-emirates.ae/media/quality-photo-240_tcm209-1178372.png" />
-        {el.name}
+        {elem.name}
       </div>
     );
   });
