@@ -5,13 +5,11 @@ import {
   updateNewMessageCreator,
 } from "../../Redux/Reducer/dialogsReducer";
 
-
 let mapStateToProps = (state) => {
-  console.log(state)
   return {
     dialogList: state.dialogs.dialogs,
-    messageList:state.dialogs.messages,
-    newMessageBody:state.dialogs.newMessageBody
+    messageList: state.dialogs.messages,
+    newMessageBody: state.dialogs.newMessageBody,
   };
 };
 
@@ -30,5 +28,3 @@ export let DialogsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Dialogs);
-
-

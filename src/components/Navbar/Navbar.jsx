@@ -3,11 +3,10 @@ import { NavLink } from "react-router-dom";
 import classes from "./Navbar.module.css";
 
 const Navbar = (props) => {
-  // console.log(props);
   let newSideBar = props.sideBarPages.map((el) => {
     return (
       <div className={classes.item}>
-        <NavLink to={el.to} key={el.id} activeClassName={classes.navActiv}>
+        <NavLink exact to={el.to} key={el.id} activeClassName={classes.navActiv} >
           {el.name}
         </NavLink>
       </div>
@@ -32,4 +31,4 @@ const Navbar = (props) => {
     </nav>
   );
 };
-export default Navbar
+export default Navbar;

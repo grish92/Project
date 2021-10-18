@@ -3,11 +3,7 @@ import classes from "./Dialogs.module.css";
 import { DialogItem } from "./DialogItem/DialogItem";
 import { Messages } from "./Messages/Messages";
 
-
-
 export const Dialogs = (props) => {
-  
-  console.log(props);
   let dialogsElement = props.dialogList.map((dialog) => (
     <DialogItem name={dialog.name} key={dialog.id} />
   ));
@@ -18,14 +14,13 @@ export const Dialogs = (props) => {
   let newMessageBody = props.newMessageBody;
   console.log(newMessageBody);
 
-
   let SendMessage = () => {
-    props.onSendMessage()
+    props.onSendMessage();
   };
 
   let ChangeMessage = (e) => {
     let body = e.target.value;
-   props.onChangeMessage(body)
+    props.onChangeMessage(body);
   };
 
   return (
@@ -35,7 +30,6 @@ export const Dialogs = (props) => {
         {messagesElement}
         <div>
           <textarea
-            
             value={newMessageBody}
             onChange={ChangeMessage}
             placeholder="enter message"
