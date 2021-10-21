@@ -1,11 +1,12 @@
-import { usersApi } from "../../api/Api";
+import { getPost, usersApi } from "../../api/Api";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const CHANGE_CURRENT_PAGE = "CHANGE_CURRENT_PAGE";
-const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_POSTS_OF_USER = "SET_POSTS_OF_USER";
 
 let initialState = {
   users: [],
@@ -13,7 +14,9 @@ let initialState = {
   totalUsersCount: 12,
   currentPage: 1,
   isFetching: null,
-  followingInProgress: [],
+  profile: null,
+  posts: [],
+  followedList: [],
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -21,22 +24,22 @@ export const usersReducer = (state = initialState, action) => {
     case FOLLOW:
       return {
         ...state,
-        users: state.users.map((u) => {
-          if (u.id === action.userId) {
-            return { ...u, followed: true };
-          }
-          return u;
-        }),
+        followedList: state.followedList.concat(
+          state.users.filter((user) => {
+            if (user.id === action.userId) {
+              return user;
+            }
+          })
+        ),
       };
 
     case UNFOLLOW:
       return {
         ...state,
-        users: state.users.map((u) => {
-          if (u.id === action.userId) {
-            return { ...u, followed: false };
+        followedList: state.followedList.filter((user) => {
+          if (user.id !== action.userId) {
+            return user;
           }
-          return u;
         }),
       };
     case SET_USERS:
@@ -54,14 +57,17 @@ export const usersReducer = (state = initialState, action) => {
         ...state,
         currentPage: action.currentPage,
       };
-    case TOGGLE_IS_FOLLOWING_PROGRESS:
+
+    case SET_USER_PROFILE:
       return {
         ...state,
-        followingInProgress: action.isFetching
-          ? [...state.followingInProgress, action.isFetching]
-          : state.followingInProgress.filter((id) => id !== action.userId),
+        profile: action.profile,
       };
-
+    case SET_POSTS_OF_USER:
+      return {
+        ...state,
+        posts: action.posts,
+      };
     default:
       return state;
   }
@@ -99,14 +105,36 @@ export const changeCurrentPageAC = (currentPage) => {
     currentPage,
   };
 };
-export const toggleFollowingAC = (isFetching, userId) => {
+
+export const setUserProfileAC = (profile) => {
   return {
-    type: TOGGLE_IS_FOLLOWING_PROGRESS,
-    isFetching,
+    type: SET_USER_PROFILE,
+    profile,
+  };
+};
+export const setPostsOfUserAC = (posts, userId) => {
+  return {
+    type: SET_POSTS_OF_USER,
+    posts,
     userId,
   };
 };
 
+export const getPosts = (userId) => {
+  return (dispatch) => {
+    getPost(userId).then((data) => {
+      dispatch(setPostsOfUserAC(data));
+    });
+  };
+};
+
+export const getUser = (userId) => {
+  return (dispatch) => {
+    usersApi.getUser(userId).then((data) => {
+      dispatch(setUserProfileAC(data.data));
+    });
+  };
+};
 export const getUsers = (currentPage) => {
   return (dispatch) => {
     dispatch(changeCurrentPageAC(currentPage));
@@ -115,19 +143,5 @@ export const getUsers = (currentPage) => {
       dispatch(toggleIsFetchingAC(false));
       dispatch(setUsersAC(data.data));
     });
-  };
-};
-export const follow = (userId) => {
-  return (dispatch) => {
-    dispatch(toggleFollowingAC(false, userId));
-    dispatch(unfollowSuccess(userId));
-    dispatch(toggleFollowingAC(true, userId));
-  };
-};
-export const unfollow = (userId) => {
-  return (dispatch) => {
-    dispatch(toggleFollowingAC(false, userId));
-    dispatch(follow(userId));
-    dispatch(toggleFollowingAC(true, userId));
   };
 };

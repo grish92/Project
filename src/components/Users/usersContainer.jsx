@@ -1,9 +1,6 @@
 import { connect } from "react-redux";
-import {
-  getUsers,
-  followSuccess,
-  unfollowSuccess
-} from "../../Redux/Reducer/usersReducer";
+
+import { getUsers, followSuccess } from "../../Redux/Reducer/usersReducer";
 import { UsersApiComponent } from "./UsersApiComponent";
 
 let mapStateToProps = (state) => {
@@ -13,7 +10,8 @@ let mapStateToProps = (state) => {
     pageSize: state.usersList.pageSize,
     totalUsersCount: state.usersList.totalUsersCount,
     currentPage: state.usersList.currentPage,
-    followingInProgress:state.usersList.followingInProgress
+    followingInProgress: state.usersList.followingInProgress,
+    following: state.usersList.followedList,
   };
 };
 let mapDispatchToProps = (dispatch) => {
@@ -21,12 +19,10 @@ let mapDispatchToProps = (dispatch) => {
     follow: (userId) => {
       dispatch(followSuccess(userId));
     },
-    unFollow: (userId) => {
-      dispatch(unfollowSuccess(userId));
-    },  
-    getUsers:(currentPage)=>{
-      dispatch(getUsers(currentPage))
-    }
+
+    getUsers: (currentPage) => {
+      dispatch(getUsers(currentPage));
+    },
   };
 };
 

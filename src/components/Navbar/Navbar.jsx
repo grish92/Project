@@ -6,18 +6,35 @@ const Navbar = (props) => {
   let newSideBar = props.sideBarPages.map((el) => {
     return (
       <div className={classes.item}>
-        <NavLink exact to={el.to} key={el.id} activeClassName={classes.navActiv} >
+        <NavLink
+          exact
+          to={el.to}
+          key={el.id}
+          activeClassName={classes.navActiv}
+        >
           {el.name}
         </NavLink>
       </div>
     );
   });
 
-  let newFriends = props.friends.map((elem) => {
+  let newFriends = props.following.map((elem) => {
     return (
       <div key={elem.id} className={classes.friend}>
-        <img src="https://www.canon-emirates.ae/media/quality-photo-240_tcm209-1178372.png" />
-        {elem.name}
+        <div>
+          <img src={elem.avatar} alt="" />
+        </div>
+        <div>{elem.first_name}</div>
+        <div>{elem.last_name}</div>
+        <div>{elem.email}</div>
+
+        <button
+          onClick={() => {
+            props.unFollow(elem.id);
+          }}
+        >
+          Unfollow
+        </button>
       </div>
     );
   });
@@ -25,7 +42,7 @@ const Navbar = (props) => {
     <nav className={classes.nav}>
       {newSideBar}
       <div>
-        <h3>Friends</h3>
+        <h3>Following</h3>
         <div>{newFriends}</div>
       </div>
     </nav>

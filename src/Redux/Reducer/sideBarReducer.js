@@ -7,7 +7,7 @@ let initialState= {
       { id: "5", name: "Settings", to: "/settings" },
       { id: "6", name: "New Users", to: "/users" },
     ],
-    friends: [
+    following: [
       { id: '01', name: "User1" },
       { id: '02', name: "User2" },
       { id: '03', name: "User3" },

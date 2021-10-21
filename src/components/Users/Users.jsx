@@ -11,6 +11,7 @@ export const Users = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
+
   return (
     <div>
       <div>
@@ -30,28 +31,19 @@ export const Users = (props) => {
         {props.users.map((e) => (
           <div key={e.id} className={classes.user}>
             <span>
-              <NavLink to={"/profile/" + e.id}>
+              <NavLink to={"/user/" + e.id}>
                 <img src={e.avatar} alt="" />
               </NavLink>
-              {!e.followed ? (
-                <button
-                  disabled={props.followingInProgress.some((id) => id === e.id)}
-                  onClick={() => {
-                    props.follow(e.id);
-                  }}
-                >
-                  Follow
-                </button>
-              ) : (
-                <button
-                  disabled={props.followingInProgress.some((id) => id === e.id)}
-                  onClick={() => {
-                    props.unFollow(e.id);
-                  }}
-                >
-                  Unfollow
-                </button>
-              )}
+
+              <button
+                disabled={props.following.includes(e)}
+                onClick={() => {
+                  console.log(props);
+                  props.follow(e.id);
+                }}
+              >
+                Follow
+              </button>
             </span>
             <span>
               <div> {`${e.first_name}  ${e.last_name}`}</div>

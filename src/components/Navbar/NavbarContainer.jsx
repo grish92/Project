@@ -1,11 +1,24 @@
 import { connect } from "react-redux";
+import { unfollowSuccess } from "../../Redux/Reducer/usersReducer";
+
 import Navbar from "./Navbar";
 
 let mapStateToProps = (state) => {
   return {
     sideBarPages: state.sideBar.sideBarPages,
-    friends: state.sideBar.friends,
+    following: state.usersList.followedList,
+    followingInProgress: state.usersList.followingInProgress,
   };
 };
 
-export const NavbarContainer = connect(mapStateToProps)(Navbar);
+let mapDispatchToProps = (dispatch) => {
+  return {
+    unFollow: (userId) => {
+      dispatch(unfollowSuccess(userId));
+    },
+  };
+};
+export const NavbarContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navbar);
