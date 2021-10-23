@@ -1,9 +1,8 @@
-.user img{
-    width: 200px;
-    height: 200px;
+.user img:hover {
+  width: 200px;
+  height: 200px;
 }
 
-
-.selectedPage{
-    font-weight: bold;
+.selectedPage {
+  font-weight: bold;
 }

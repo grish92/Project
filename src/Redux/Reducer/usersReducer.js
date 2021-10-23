@@ -7,6 +7,7 @@ const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const CHANGE_CURRENT_PAGE = "CHANGE_CURRENT_PAGE";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_POSTS_OF_USER = "SET_POSTS_OF_USER";
+const SEND_MESSAGE = "SEND_MESSAGE";
 
 let initialState = {
   users: [],
@@ -17,6 +18,7 @@ let initialState = {
   profile: null,
   posts: [],
   followedList: [],
+  sendMessage: [],
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -68,11 +70,28 @@ export const usersReducer = (state = initialState, action) => {
         ...state,
         posts: action.posts,
       };
+    case SEND_MESSAGE:
+      return {
+        ...state,
+        sendMessage: state.sendMessage.concat(
+          state.users.filter((user) => {
+            if (user.id === action.userId) {
+              return user;
+            }
+          })
+        ),
+      };
     default:
       return state;
   }
 };
 
+export const sendMessageAC = (userId) => {
+  return {
+    type: SEND_MESSAGE,
+    userId,
+  };
+};
 export const followSuccess = (userId) => {
   return {
     type: FOLLOW,

@@ -1,6 +1,9 @@
 import { connect } from "react-redux";
-
-import { getUsers, followSuccess } from "../../Redux/Reducer/usersReducer";
+import {
+  getUsers,
+  followSuccess,
+  sendMessageAC,
+} from "../../Redux/Reducer/usersReducer";
 import { UsersApiComponent } from "./UsersApiComponent";
 
 let mapStateToProps = (state) => {
@@ -12,12 +15,16 @@ let mapStateToProps = (state) => {
     currentPage: state.usersList.currentPage,
     followingInProgress: state.usersList.followingInProgress,
     following: state.usersList.followedList,
+    dialogs: state.usersList.sendMessage,
   };
 };
 let mapDispatchToProps = (dispatch) => {
   return {
     follow: (userId) => {
       dispatch(followSuccess(userId));
+    },
+    sendMessage: (userId) => {
+      dispatch(sendMessageAC(userId));
     },
 
     getUsers: (currentPage) => {

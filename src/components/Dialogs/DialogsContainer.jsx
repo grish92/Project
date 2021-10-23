@@ -7,9 +7,9 @@ import {
 
 let mapStateToProps = (state) => {
   return {
-    dialogList: state.dialogs.dialogs,
     messageList: state.dialogs.messages,
     newMessageBody: state.dialogs.newMessageBody,
+    dialogs: state.usersList.sendMessage,
   };
 };
 

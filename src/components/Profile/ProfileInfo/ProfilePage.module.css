@@ -1,26 +1,53 @@
-.content{
-    /* padding: 10px; */
-    margin:0 auto;
-    display: grid;
-    grid-template-areas: 
-         'g s'
-         'g i';
-  
-    /* grid-template-rows: 5px 1fr; */
-    grid-template-columns: 50% 50%;
-}
+.content {
+  /* padding: 10px; */
+  margin: 0 auto;
+  display: grid;
+  grid-template-areas:
+    "g s"
+    "g i";
 
-.info {
-    grid-area: i;
-    background-color: aquamarine;
-    
+  /* grid-template-rows: 5px 1fr; */
+  grid-template-columns: 50% 50%;
 }
-
-.status{
-    grid-area:s;
-    background-color: blue;
+.name {
+  border: 1px solid black;
+  border-style: double;
+  padding: 10px;
+  margin: 5px;
+  color: black;
 }
-.image{
-    grid-area:g;
-    background-color: chartreuse;
+.surname {
+  border: 1px solid black;
+  border-style: double;
+  padding: 10px;
+  margin: 5px;
+  color: black;
+}
+.email {
+  border: 1px solid black;
+  border-style: double;
+  padding: 10px;
+  margin: 5px;
+  color: black;
+}
+.phone {
+  border: 1px solid black;
+  border-style: double;
+  padding: 10px;
+  margin: 5px;
+  color: black;
+}
+.location {
+  border: 1px solid black;
+  border-style: double;
+  padding: 10px;
+  margin: 5px;
+  color: black;
+}
+.status {
+  border: 1px solid black;
+  border-style: double;
+  padding: 5px;
+  margin: 5px;
+  color: black;
 }

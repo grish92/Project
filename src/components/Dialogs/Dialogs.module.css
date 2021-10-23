@@ -1,13 +1,28 @@
 .dialogs{
     display: grid;
+    grid-template-areas: 'd m'
+                         'd t';
     grid-template-columns: 2fr 10fr;
+    
+
 }
 .dialogItems {
+    grid-area: d;
     padding: 10px;
+    background-color: red;
+    height: 537px;
 }
-dialogItems .dialog{
-    
-}
-.messages{
+.messages {
+    grid-area: m;
+    padding: 10px;
+    background-color: white;
+    height: 495px;
 
+}
+.textarea{
+    grid-area: t;
+    background-color: red;
+}
+.messageClass{
+    float: right;
 }

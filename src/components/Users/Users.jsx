@@ -2,16 +2,16 @@ import React from "react";
 import classes from "./Users.module.css";
 import { NavLink } from "react-router-dom";
 import styles from "./Users.module.css";
+import { useHistory } from "react-router-dom";
 
 export const Users = (props) => {
-  console.log(props);
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-
+  const history = useHistory();
   return (
     <div>
       <div>
@@ -38,11 +38,19 @@ export const Users = (props) => {
               <button
                 disabled={props.following.includes(e)}
                 onClick={() => {
-                  console.log(props);
                   props.follow(e.id);
                 }}
               >
                 Follow
+              </button>
+              <button
+                disabled={props.dialogs.includes(e)}
+                onClick={() => {
+                  props.sendMessage(e.id);
+                  history.push("/dialogs");
+                }}
+              >
+                send message
               </button>
             </span>
             <span>

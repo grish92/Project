@@ -1,0 +1,15 @@
+.dialog {
+  margin: 10px;
+  height: 80px;
+  width: 200px;
+  top: 241px;
+  background-color: white;
+}
+.dialog:hover {
+  border: 1px solid black;
+  border-radius: 20px;
+}
+.dialog img{
+  width: 50px;
+  border-radius: 35px;
+}

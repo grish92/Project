@@ -1,10 +1,10 @@
 import React from "react";
 import classes from "./Post.module.css";
-
+import img from "./../../../../photo/img.jpg";
 export const Post = (props) => {
   return (
     <div className={classes.item}>
-      <img src="https://www.canon-emirates.ae/media/quality-photo-240_tcm209-1178372.png" alt=''/>
+      <img src={img} alt="" />
       {props.message}
       <div>
         <span>like</span>

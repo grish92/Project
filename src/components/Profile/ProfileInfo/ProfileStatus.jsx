@@ -3,7 +3,7 @@ import classes from "./ProfilePage.module.css";
 
 export const ProfileStatus = (props) => {
   const [editMode, setEditMode] = useState(false);
-  const [status, setStatus] = useState("enter Status");
+  const [status, setStatus] = useState("");
 
   const activateMode = () => {
     setEditMode(true);
@@ -14,18 +14,20 @@ export const ProfileStatus = (props) => {
   return (
     <div>
       {!editMode && (
-        <div>
-          <span onDoubleClick={activateMode}>Status:{status}</span>
+        <div className={classes.status}>
+          <span onDoubleClick={activateMode}>
+            Status: <strong>{status} </strong>
+          </span>
         </div>
       )}
       {editMode && (
         <div>
           <input
+            className={classes.status}
             autoFocus={true}
             onBlur={deActivateMode}
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-
           />
         </div>
       )}

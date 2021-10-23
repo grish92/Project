@@ -7,7 +7,11 @@ export const DialogItem = (props) => {
 
   return (
     <div className={classes.dialog}>
-      <NavLink to={path}>{props.name}</NavLink>
+      <NavLink to={path}>
+        <img src={props.img} alt="" />
+        {props.name}
+        {props.surname}
+      </NavLink>
     </div>
   );
 };

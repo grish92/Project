@@ -17,6 +17,7 @@ export class UsersApiComponent extends React.Component {
         {this.props.isFetching ? <Preloader /> : null}
 
         <Users
+          dialogs={this.props.dialogs}
           users={this.props.users}
           follow={this.props.follow}
           currentPage={this.props.currentPage}
@@ -24,6 +25,7 @@ export class UsersApiComponent extends React.Component {
           pageSize={this.props.pageSize}
           onPageChanged={this.onPageChanged}
           following={this.props.following}
+          sendMessage={this.props.sendMessage}
         />
       </>
     );

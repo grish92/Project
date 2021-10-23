@@ -4,8 +4,13 @@ import { DialogItem } from "./DialogItem/DialogItem";
 import { Messages } from "./Messages/Messages";
 
 export const Dialogs = (props) => {
-  let dialogsElement = props.dialogList.map((dialog) => (
-    <DialogItem name={dialog.name} key={dialog.id} />
+  let dialogsElement = props.dialogs.map((dialog) => (
+    <DialogItem
+      name={dialog.first_name}
+      id={dialog.id}
+      img={dialog.avatar}
+      surname={dialog.last_name}
+    />
   ));
 
   let messagesElement = props.messageList.map((message) => (
@@ -26,9 +31,9 @@ export const Dialogs = (props) => {
   return (
     <div className={classes.dialogs}>
       <div className={classes.dialogItems}>{dialogsElement}</div>
-      <div className={classes.messages}>
-        {messagesElement}
-        <div>
+      <div>
+        <div className={classes.messages}>{messagesElement}</div>
+        <div className={classes.textarea}>
           <textarea
             value={newMessageBody}
             onChange={ChangeMessage}

@@ -1,3 +1,7 @@
-.message{
-    padding: 10px;
-    }
+.message {
+  padding: 15px;
+  margin: 10px;
+  height: 8px;
+  background: #f2f5fa;
+  border-radius: 100px 100px 10px 100px;
+}

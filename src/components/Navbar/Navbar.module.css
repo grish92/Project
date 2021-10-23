@@ -1,17 +1,29 @@
-.nav{
-    grid-area: n;
-    background-color: brown;
-    }
+.item{
+    padding: 20px;
+}
+.nav {
+  grid-area: n;
+  background-color: brown;
+}
+.linkLogo{
+    width: 25px;
+    height: 25px;
+}
 
-    .item a{
-        color:white;
-        text-decoration: none;
-    }
+.item a {
+  color: white;
+  text-decoration: none;
+}
 
-    .item a.navActiv{
-        color: gold;
-    }
-    .friend img{
-        width: 50px;
-        border-radius: 35px;
-      }
+.item a.navActiv {
+  color: gold;
+}
+.friend img {
+  width: 50px;
+  border-radius: 35px;
+}
+
+.logo {
+  width: 200px;
+  height: 100px;
+}
